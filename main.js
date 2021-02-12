@@ -21,7 +21,9 @@ const domItems = {
     lotteryNumber3: document.querySelector('#lotteryTableNum3'),
     lotteryNumber4: document.querySelector('#lotteryTableNum4'),
     lotteryNumber5: document.querySelector('#lotteryTableNum5'),
-    lotteryResult: document.querySelector('#result')
+    lotteryResult: document.querySelector('#result'),
+    tableSection: document.querySelector('.tableSection'),
+    resultSection: document.querySelector('.resultSection')
 }
 
 // Get userdatas
@@ -64,6 +66,7 @@ async function delayCall() {
 
 let lotteryNumbers = [];
 async function lotteryDrawing(drawNumber = 5, possibleNumber = 90) {
+    domItems.tableSection.classList.remove('d-none');
     let randomNumber;
     for (let i = 1; i <= drawNumber; i++) {
         randomNumber = Math.floor(Math.random() * (possibleNumber - 1)) + 1;
@@ -96,6 +99,7 @@ const compareNums = () => {
     } else if (counter > 1) {
         domItems.lotteryResult.textContent = (`Congratulation ${domItems.setName.value}, you have ${counter} hit in the Lottery! You are lucky!`);
     }
+    domItems.resultSection.classList.remove('d-none');
     userNumbers = [];
     lotteryNumbers = [];
 }

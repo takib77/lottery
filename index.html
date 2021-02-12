@@ -11,9 +11,10 @@
 
 <body class="bg-dark">
     <div class="container">
-        <div class="row">
+
+        <div class="row formSection">
             <div class="col-4 my-3 mx-auto">
-                <h1 class="text-center text-primary">Lottery</h1>
+                <h1 class="text-center text-primary">Lottery Game</h1>
                 <div class="mb-3">
                     <label class="text-white" for="name">Enter your name:</label>
                     <input id="userName" class="form-control" name="name" type="text" placeholder="John Doe" required>
@@ -37,7 +38,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="d-none row tableSection">
             <div class="col-6 mx-auto mt-5">
                 <h2 class="text-center text-primary mb-3">The result of the lottery:</h2>
                 <table class="table table-striped">
@@ -63,7 +64,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="d-none row resultSection">
             <div class="col-6 mx-auto mt-5">
                 <h4 id="result" class="bg-white p-3 text-center text-primary"></h4>
             </div>
