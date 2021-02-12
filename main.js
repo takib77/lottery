@@ -96,6 +96,8 @@ const compareNums = () => {
     } else if (counter > 1) {
         domItems.lotteryResult.textContent = (`Congratulation ${domItems.setName.value}, you have ${counter} hit in the Lottery! You are lucky!`);
     }
+    userNumbers = [];
+    lotteryNumbers = [];
 }
 
 
