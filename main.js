@@ -43,20 +43,37 @@ const onStartClick = () => {
     });
 }
 
-const lotteryEvent = (drawNumber = 5, possibleNumber = 90) => {
+const delay = (delayInSecond) => {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve(userNumbers);
+        }, delayInSecond * 1000);
+    })
+}
+
+async function delayCall() {
+    const result = await delay(2);
+}
+
+
+async function lotteryEvent(drawNumber = 5, possibleNumber = 90) {
     let lotteryNumbers = [];
     let randomNumber;
     for (let i = 1; i <= drawNumber; i++) {
         randomNumber = Math.floor(Math.random() * (possibleNumber - 1)) + 1;
         lotteryNumbers.push(randomNumber);
     }
+    await delayCall();
     domItems.lotteryNumber1.textContent = lotteryNumbers[0];
+    await delayCall();
     domItems.lotteryNumber2.textContent = lotteryNumbers[1];
+    await delayCall();
     domItems.lotteryNumber3.textContent = lotteryNumbers[2];
+    await delayCall();
     domItems.lotteryNumber4.textContent = lotteryNumbers[3];
+    await delayCall();
     domItems.lotteryNumber5.textContent = lotteryNumbers[4];
 }
-
 
 
 onStartClick();
