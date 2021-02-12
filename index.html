@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lottery Game</title>
+    <link rel="stylesheet" href="./bootstrap.min.css">
+</head>
+<div class="container">
+    <div class="row">
+        <div class="col-4 my-3 mx-auto">
+            <h1 class="text-center text-primary">Lottery</h1>
+            <div class="mb-3">
+                <label for="name">Enter your name:</label>
+                <input id="userName" class="form-control" name="name" type="text" placeholder="John Doe" required>
+            </div>
+            <div class="mb-3">
+                <label for="numbers">Enter your numbers:</label>
+                <div class="d-flex">
+                    <input id="userNum1" class="form-control text-center p-0" type="text" name="number1" maxlength="2"
+                        size="2" placeholder="1">
+                    <input id="userNum2" class="form-control text-center p-0" type="text" name="number2" maxlength="2"
+                        size="2" placeholder="20">
+                    <input id="userNum3" class="form-control text-center p-0" type="text" name="number3" maxlength="2"
+                        size="2" placeholder="35">
+                    <input id="userNum4" class="form-control text-center p-0" type="text" name="number4" maxlength="2"
+                        size="2" placeholder="66">
+                    <input id="userNum5" class="form-control text-center p-0" type="text" name="number5" maxlength="2"
+                        size="2" placeholder="90">
+                </div>
+            </div>
+            <button class="btn btn-primary btn-block">Start the game</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6 mx-auto mt-5">
+            <h2 class="text-center mb-3">The result of the lottery:</h2>
+            <table class="table table-striped">
+                <tbody>
+                    <tr class="bg-success">
+                        <th class="text-white"><span class="userSpan"></span> numbers:</th>
+                        <td id="userTableNum1" class="text-center text-white"></td>
+                        <td id="userTableNum2" class="text-center text-white"></td>
+                        <td id="userTableNum3" class="text-center text-white"></td>
+                        <td id="userTableNum4" class="text-center text-white"></td>
+                        <td id="userTableNum5" class="text-center text-white"></td>
+                    </tr>
+                    <tr class="bg-info">
+                        <th class="text-warning">Lottery numbers:</th>
+                        <td id="lotteryTableNum1" class="text-center text-warning"></td>
+                        <td id="lotteryTableNum2" class="text-center text-warning"></td>
+                        <td id="lotteryTableNum3" class="text-center text-warning"></td>
+                        <td id="lotteryTableNum4" class="text-center text-warning"></td>
+                        <td id="lotteryTableNum5" class="text-center text-warning"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<body>
+    <script src="./main.js"></script>
+</body>
+
+</html>
