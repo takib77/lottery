@@ -9,7 +9,9 @@ const domItems = {
     setNumber3: document.querySelector('#userNum3'),
     setNumber4: document.querySelector('#userNum4'),
     setNumber5: document.querySelector('#userNum5'),
-    start: document.querySelector('.btn'),
+    checkBox: document.querySelector('#checkbox'),
+    getRandom: document.querySelector('#getRandom'),
+    startGame: document.querySelector('#start'),
     writeName: document.querySelector('.userSpan'),
     writeNumber1: document.querySelector('#userTableNum1'),
     writeNumber2: document.querySelector('#userTableNum2'),
@@ -22,15 +24,39 @@ const domItems = {
     lotteryNumber4: document.querySelector('#lotteryTableNum4'),
     lotteryNumber5: document.querySelector('#lotteryTableNum5'),
     lotteryResult: document.querySelector('#result'),
+    tryAgain: document.querySelector('#tryAgain'),
+    formSection: document.querySelector('.formSection'),
     tableSection: document.querySelector('.tableSection'),
     resultSection: document.querySelector('.resultSection')
 }
 
-// Get userdatas
+// Check and use input datas
+
+domItems.checkBox.checked = false;
+const onCheckboxClick = () => {
+    domItems.checkBox.addEventListener('click', () => {
+        let temp = [];
+        temp.push(
+            parseInt(domItems.setNumber1.value),
+            parseInt(domItems.setNumber2.value),
+            parseInt(domItems.setNumber3.value),
+            parseInt(domItems.setNumber4.value),
+            parseInt(domItems.setNumber5.value)
+        );
+        temp.sort();
+        if (temp.includes(NaN) || temp[4] > 90) {
+            alert('You must choose 5 different number between 1 and 90!')
+            domItems.checkBox.checked = false;
+        } else {
+            domItems.startGame.classList.remove('d-none');
+            domItems.checkBox.disabled = true;
+        }
+    });
+}
 
 let userNumbers = [];
 const onStartClick = () => {
-    domItems.start.addEventListener('click', () => {
+    domItems.startGame.addEventListener('click', () => {
         userNumbers.push(
             parseInt(domItems.setNumber1.value),
             parseInt(domItems.setNumber2.value),
@@ -38,6 +64,7 @@ const onStartClick = () => {
             parseInt(domItems.setNumber4.value),
             parseInt(domItems.setNumber5.value)
         );
+
         domItems.writeName.textContent = domItems.setName.value;
         domItems.writeNumber1.textContent = userNumbers[0];
         domItems.writeNumber2.textContent = userNumbers[1];
@@ -47,6 +74,27 @@ const onStartClick = () => {
         lotteryDrawing();
     });
 }
+
+// Get random numbers
+
+const onDiceClick = () => {
+    domItems.getRandom.addEventListener('click', () => {
+        let randomNumbers = [];
+        let randomNum;
+        for (let i = 1; i <= 5; i++) {
+            randomNum = Math.floor(Math.random() * (90 - 1)) + 1;
+            if (!randomNumbers.includes(randomNum)) {
+                randomNumbers.push(randomNum);
+            } else { i -= 1 };
+        }
+        domItems.setNumber1.value = randomNumbers[0];
+        domItems.setNumber2.value = randomNumbers[1];
+        domItems.setNumber3.value = randomNumbers[2];
+        domItems.setNumber4.value = randomNumbers[3];
+        domItems.setNumber5.value = randomNumbers[4];
+    })
+}
+
 
 // Delay with async
 
@@ -67,10 +115,15 @@ async function delayCall() {
 let lotteryNumbers = [];
 async function lotteryDrawing(drawNumber = 5, possibleNumber = 90) {
     domItems.tableSection.classList.remove('d-none');
+    domItems.formSection.classList.add('d-none');
+    domItems.checkBox.classList.add('d-none');
+    domItems.startGame.classList.add('d-none');
     let randomNumber;
     for (let i = 1; i <= drawNumber; i++) {
         randomNumber = Math.floor(Math.random() * (possibleNumber - 1)) + 1;
-        lotteryNumbers.push(randomNumber);
+        if (!lotteryNumbers.includes(randomNumber)) {
+            lotteryNumbers.push(randomNumber);
+        } else { i -= 1 };
     }
     await delayCall();
     domItems.lotteryNumber1.textContent = lotteryNumbers[0];
@@ -96,13 +149,26 @@ const compareNums = () => {
     }
     if (counter <= 1) {
         domItems.lotteryResult.textContent = (`Sorry ${domItems.setName.value}, you have ${counter} hit in the Lottery! Try again next week!`);
+        domItems.lotteryResult.classList.add('bg-white');
     } else if (counter > 1) {
         domItems.lotteryResult.textContent = (`Congratulation ${domItems.setName.value}, you have ${counter} hit in the Lottery! You are lucky!`);
+        domItems.lotteryResult.classList.add('bg-warning');
     }
     domItems.resultSection.classList.remove('d-none');
     userNumbers = [];
     lotteryNumbers = [];
 }
 
+// Start new game
 
+const onTryAgain = () => {
+    domItems.tryAgain.addEventListener('click', () => {
+        location.reload();
+    })
+}
+
+
+onDiceClick();
+onCheckboxClick();
 onStartClick();
+onTryAgain();
