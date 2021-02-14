@@ -12,27 +12,26 @@
 <body class="bg-dark">
     <div class="container">
 
-        <div class="row formSection">
+        <div class="row" id="formSection">
             <div class="col-6 my-3 mx-auto">
                 <h1 class="text-center text-primary">Lottery Game</h1>
                 <div class="my-3">
                     <label class="text-white" for="name">Enter your name:</label>
-                    <input id="userName" class="form-control" name="name" type="text" placeholder="John Doe" required
-                        pattern="[a-z]{2,20}">
+                    <input id="userName" class="form-control" name="name" type="text" required pattern="[a-z]{2,20}">
                 </div>
                 <div class="mb-3">
                     <label class="text-white" for="numbers">Enter 5 different numbers between 1 and 90:</label>
                     <div class="d-flex">
-                        <input id="userNum1" class="form-control text-center p-0 mx-1" type="text" name="number1"
-                            maxlength="2" size="2" placeholder="3" required pattern="[0-9]{1,2}">
-                        <input id="userNum2" class="form-control text-center p-0 mx-1" type="text" name="number2"
-                            maxlength="2" size="2" placeholder="32" required pattern="[0-9]{1,2}">
-                        <input id="userNum3" class="form-control text-center p-0 mx-1" type="text" name="number3"
-                            maxlength="2" size="2" placeholder="76" required pattern="[0-9]{1,2}">
-                        <input id="userNum4" class="form-control text-center p-0 mx-1" type="text" name="number4"
-                            maxlength="2" size="2" placeholder="9" required pattern="[0-9]{1,2}">
-                        <input id="userNum5" class="form-control text-center p-0 mx-1" type="text" name="number5"
-                            maxlength="2" size="2" placeholder="90" required pattern="[0-9]{1,2}">
+                        <input id="userNum" class="form-control text-center p-0 mx-1" type="text" name="numbers"
+                            maxlength="2" size="2" required pattern="[0-9]{1,2}">
+                        <input id="userNum" class="form-control text-center p-0 mx-1" type="text" name="numbers"
+                            maxlength="2" size="2" required pattern="[0-9]{1,2}">
+                        <input id="userNum" class="form-control text-center p-0 mx-1" type="text" name="numbers"
+                            maxlength="2" size="2" required pattern="[0-9]{1,2}">
+                        <input id="userNum" class="form-control text-center p-0 mx-1" type="text" name="numbers"
+                            maxlength="2" size="2" required pattern="[0-9]{1,2}">
+                        <input id="userNum" class="form-control text-center p-0 mx-1" type="text" name="numbers"
+                            maxlength="2" size="2" required pattern="[0-9]{1,2}">
                         <button id="getRandom" class="btn btn-warning">&#127922</button>
                     </div>
                 </div>
@@ -44,33 +43,33 @@
             </div>
         </div>
 
-        <div class="d-none row tableSection">
+        <div class="d-none row" id="tableSection">
             <div class="col-6 mx-auto">
                 <h2 class="h1 text-center text-primary my-3">The result of the lottery:</h2>
                 <table class="table table-striped">
                     <tbody>
                         <tr class="bg-success">
-                            <th class="text-white"><span class="userSpan"></span> numbers:</th>
-                            <td id="userTableNum1" class="text-center text-white"></td>
-                            <td id="userTableNum2" class="text-center text-white"></td>
-                            <td id="userTableNum3" class="text-center text-white"></td>
-                            <td id="userTableNum4" class="text-center text-white"></td>
-                            <td id="userTableNum5" class="text-center text-white"></td>
+                            <th class="text-white"><span id="userSpan"></span> numbers:</th>
+                            <td id="userTableNums" class="text-center text-white"></td>
+                            <td id="userTableNums" class="text-center text-white"></td>
+                            <td id="userTableNums" class="text-center text-white"></td>
+                            <td id="userTableNums" class="text-center text-white"></td>
+                            <td id="userTableNums" class="text-center text-white"></td>
                         </tr>
                         <tr class="bg-info">
                             <th>Lottery numbers:</th>
-                            <td id="lotteryTableNum1" class="text-center"></td>
-                            <td id="lotteryTableNum2" class="text-center"></td>
-                            <td id="lotteryTableNum3" class="text-center"></td>
-                            <td id="lotteryTableNum4" class="text-center"></td>
-                            <td id="lotteryTableNum5" class="text-center"></td>
+                            <td id="lotteryTableNums" class="text-center"></td>
+                            <td id="lotteryTableNums" class="text-center"></td>
+                            <td id="lotteryTableNums" class="text-center"></td>
+                            <td id="lotteryTableNums" class="text-center"></td>
+                            <td id="lotteryTableNums" class="text-center"></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
-        <div class="d-none row resultSection my-3">
+        <div class="d-none row my-3" id="resultSection">
             <div class="col-6 mx-auto">
                 <p id="result" class="p-3 text-center"></p>
                 <button id="tryAgain" class="btn btn-success btn-block text-white mt-5">Try again</button>

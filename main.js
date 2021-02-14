@@ -4,30 +4,18 @@
 
 const domItems = {
     setName: document.querySelector('#userName'),
-    setNumber1: document.querySelector('#userNum1'),
-    setNumber2: document.querySelector('#userNum2'),
-    setNumber3: document.querySelector('#userNum3'),
-    setNumber4: document.querySelector('#userNum4'),
-    setNumber5: document.querySelector('#userNum5'),
+    setNumbers: document.querySelectorAll('#userNum'),
     checkBox: document.querySelector('#checkbox'),
     getRandom: document.querySelector('#getRandom'),
     startGame: document.querySelector('#start'),
-    writeName: document.querySelector('.userSpan'),
-    writeNumber1: document.querySelector('#userTableNum1'),
-    writeNumber2: document.querySelector('#userTableNum2'),
-    writeNumber3: document.querySelector('#userTableNum3'),
-    writeNumber4: document.querySelector('#userTableNum4'),
-    writeNumber5: document.querySelector('#userTableNum5'),
-    lotteryNumber1: document.querySelector('#lotteryTableNum1'),
-    lotteryNumber2: document.querySelector('#lotteryTableNum2'),
-    lotteryNumber3: document.querySelector('#lotteryTableNum3'),
-    lotteryNumber4: document.querySelector('#lotteryTableNum4'),
-    lotteryNumber5: document.querySelector('#lotteryTableNum5'),
+    writeName: document.querySelector('#userSpan'),
+    writeNumbers: document.querySelectorAll('#userTableNums'),
+    lotteryNumbers: document.querySelectorAll('#lotteryTableNums'),
     lotteryResult: document.querySelector('#result'),
     tryAgain: document.querySelector('#tryAgain'),
-    formSection: document.querySelector('.formSection'),
-    tableSection: document.querySelector('.tableSection'),
-    resultSection: document.querySelector('.resultSection')
+    formSection: document.querySelector('#formSection'),
+    tableSection: document.querySelector('#tableSection'),
+    resultSection: document.querySelector('#resultSection')
 }
 
 // Check and use input datas
@@ -36,20 +24,17 @@ domItems.checkBox.checked = false;
 const onCheckboxClick = () => {
     domItems.checkBox.addEventListener('click', () => {
         let temp = [];
-        temp.push(
-            parseInt(domItems.setNumber1.value),
-            parseInt(domItems.setNumber2.value),
-            parseInt(domItems.setNumber3.value),
-            parseInt(domItems.setNumber4.value),
-            parseInt(domItems.setNumber5.value)
-        );
+        domItems.setNumbers.forEach(input => temp.push(parseInt(input.value)));
         temp.sort();
         if (temp.includes(NaN) || temp[4] > 90) {
             alert('You must choose 5 different number between 1 and 90!')
             domItems.checkBox.checked = false;
         } else {
             domItems.startGame.classList.remove('d-none');
+            domItems.setName.disabled = true;
+            domItems.getRandom.disabled = true;
             domItems.checkBox.disabled = true;
+            domItems.setNumbers.forEach(input => input.disabled = true);
         }
     });
 }
@@ -57,20 +42,14 @@ const onCheckboxClick = () => {
 let userNumbers = [];
 const onStartClick = () => {
     domItems.startGame.addEventListener('click', () => {
-        userNumbers.push(
-            parseInt(domItems.setNumber1.value),
-            parseInt(domItems.setNumber2.value),
-            parseInt(domItems.setNumber3.value),
-            parseInt(domItems.setNumber4.value),
-            parseInt(domItems.setNumber5.value)
-        );
+        domItems.setNumbers.forEach(input => userNumbers.push(parseInt(input.value)));
 
         domItems.writeName.textContent = domItems.setName.value;
-        domItems.writeNumber1.textContent = userNumbers[0];
-        domItems.writeNumber2.textContent = userNumbers[1];
-        domItems.writeNumber3.textContent = userNumbers[2];
-        domItems.writeNumber4.textContent = userNumbers[3];
-        domItems.writeNumber5.textContent = userNumbers[4];
+        domItems.writeNumbers[0].textContent = userNumbers[0];
+        domItems.writeNumbers[1].textContent = userNumbers[1];
+        domItems.writeNumbers[2].textContent = userNumbers[2];
+        domItems.writeNumbers[3].textContent = userNumbers[3];
+        domItems.writeNumbers[4].textContent = userNumbers[4];
         lotteryDrawing();
     });
 }
@@ -85,13 +64,9 @@ const onDiceClick = () => {
             randomNum = Math.floor(Math.random() * (90 - 1)) + 1;
             if (!randomNumbers.includes(randomNum)) {
                 randomNumbers.push(randomNum);
+                domItems.setNumbers[i - 1].value = randomNumbers[i - 1];
             } else { i -= 1 };
         }
-        domItems.setNumber1.value = randomNumbers[0];
-        domItems.setNumber2.value = randomNumbers[1];
-        domItems.setNumber3.value = randomNumbers[2];
-        domItems.setNumber4.value = randomNumbers[3];
-        domItems.setNumber5.value = randomNumbers[4];
     })
 }
 
@@ -126,15 +101,15 @@ async function lotteryDrawing(drawNumber = 5, possibleNumber = 90) {
         } else { i -= 1 };
     }
     await delayCall();
-    domItems.lotteryNumber1.textContent = lotteryNumbers[0];
+    domItems.lotteryNumbers[0].textContent = lotteryNumbers[0];
     await delayCall();
-    domItems.lotteryNumber2.textContent = lotteryNumbers[1];
+    domItems.lotteryNumbers[1].textContent = lotteryNumbers[1];
     await delayCall();
-    domItems.lotteryNumber3.textContent = lotteryNumbers[2];
+    domItems.lotteryNumbers[2].textContent = lotteryNumbers[2];
     await delayCall();
-    domItems.lotteryNumber4.textContent = lotteryNumbers[3];
+    domItems.lotteryNumbers[3].textContent = lotteryNumbers[3];
     await delayCall();
-    domItems.lotteryNumber5.textContent = lotteryNumbers[4];
+    domItems.lotteryNumbers[4].textContent = lotteryNumbers[4];
     compareNums();
 }
 
