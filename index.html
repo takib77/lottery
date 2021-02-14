@@ -17,21 +17,21 @@
                 <h1 class="text-center text-primary">Lottery Game</h1>
                 <div class="my-3">
                     <label class="text-white" for="name">Enter your name:</label>
-                    <input id="userName" class="form-control" name="name" type="text" required pattern="[a-z]{2,20}">
+                    <input id="userName" class="form-control" name="name" type="text" required>
                 </div>
                 <div class="mb-3">
                     <label class="text-white" for="numbers">Enter 5 different numbers between 1 and 90:</label>
                     <div class="d-flex">
                         <input id="userNum" class="form-control text-center p-0 mx-1" type="text" name="numbers"
-                            maxlength="2" size="2" required pattern="[0-9]{1,2}">
+                            maxlength="2" size="2" required>
                         <input id="userNum" class="form-control text-center p-0 mx-1" type="text" name="numbers"
-                            maxlength="2" size="2" required pattern="[0-9]{1,2}">
+                            maxlength="2" size="2" required>
                         <input id="userNum" class="form-control text-center p-0 mx-1" type="text" name="numbers"
-                            maxlength="2" size="2" required pattern="[0-9]{1,2}">
+                            maxlength="2" size="2" required>
                         <input id="userNum" class="form-control text-center p-0 mx-1" type="text" name="numbers"
-                            maxlength="2" size="2" required pattern="[0-9]{1,2}">
+                            maxlength="2" size="2" required>
                         <input id="userNum" class="form-control text-center p-0 mx-1" type="text" name="numbers"
-                            maxlength="2" size="2" required pattern="[0-9]{1,2}">
+                            maxlength="2" size="2" required>
                         <button id="getRandom" class="btn btn-warning">&#127922</button>
                     </div>
                 </div>
@@ -73,9 +73,15 @@
             <div class="col-6 mx-auto">
                 <p id="result" class="p-3 text-center"></p>
                 <button id="tryAgain" class="btn btn-success btn-block text-white mt-5">Try again</button>
+                <button id="preWinners" class="btn btn-info btn-block text-white mt-1">Previous winner</button>
             </div>
         </div>
 
+        <div class="col-6 d-none mx-auto my-3" id="preWinnerSection">
+            <table class="table table-stripped">
+                <tbody id="preWinnerTable"></tbody>
+            </table>
+        </div>
     </div>
 
     <script src="./main.js"></script>
