@@ -22,9 +22,9 @@ const domItems = {
 };
 
 const drawNumber = 5;
-const possibleNumber = 10;
+const possibleNumber = 90;
 
-// Check and use input datas
+// Check and use input data
 
 domItems.checkBox.checked = false;
 
@@ -48,7 +48,7 @@ const onCheckboxClick = () => {
             inputValidator.validate(`${parseInt(domItems.setNumbers[2].value)}`, 'numbers') === false ||
             inputValidator.validate(`${parseInt(domItems.setNumbers[3].value)}`, 'numbers') === false ||
             inputValidator.validate(`${parseInt(domItems.setNumbers[4].value)}`, 'numbers') === false ||
-            temp[4] > 90) {
+            temp[drawNumber - 1] > 90 || temp[0] < 1) {
             alert('You must choose 5 different number between 1 and 90!');
             domItems.checkBox.checked = false;
         }
@@ -147,13 +147,14 @@ const compareNums = () => {
         }
     }
     if (counter <= 1) {
-        domItems.lotteryResult.textContent = (`Sorry ${domItems.setName.value}, you have ${counter} hit in the Lottery! Try again next week!`);
+        domItems.lotteryResult.textContent = (
+            `Sorry ${domItems.setName.value}, you have ${counter} hit in the Lottery! Try again next week!`);
         domItems.lotteryResult.classList.add('bg-white');
     } else if (counter > 1) {
-        domItems.lotteryResult.textContent = (`Congratulation ${domItems.setName.value}, you have ${counter} hit in the Lottery! You are lucky!`);
+        domItems.lotteryResult.textContent = (
+            `Congratulation ${domItems.setName.value}, you have ${counter} hit in the Lottery! You are lucky!`);
         domItems.lotteryResult.classList.add('bg-warning');
-        localStorage.setItem(
-            `${timeNow}`, `Name: ${domItems.setName.value}, Usernumbers: ${userNumbers}, Lotterynumbers: ${lotteryNumbers}, Hits: ${counter}`);
+        localStorage.setItem(idNumber.next().value, `${LotteryData()}`);
     }
     domItems.resultSection.classList.remove('d-none');
     userNumbers = [];
@@ -177,8 +178,22 @@ const time = {
     }
 };
 
-const timeNow =
-    `${time.year}.${time.zero(time.month)}.${time.zero(time.day)}. ${time.zero(time.hour)}:${time.zero(time.minute)}:${time.zero(time.second)}`;
+const dateNow = `${time.year}.${time.zero(time.month)}.${time.zero(time.day)}. `;
+const timeNow = `${time.zero(time.hour)}:${time.zero(time.minute)}:${time.zero(time.second)}`;
+const DateAndTime = dateNow + timeNow;
+const LotteryData = () => {
+    return `Date: ${DateAndTime}, Name: ${domItems.setName.value}, User: ${userNumbers}, Lottery: ${lotteryNumbers}, Hits: ${counter}`;
+}
+
+// ID Generator
+
+function* idGenerator(start) {
+    let id = start;
+    while (true) {
+        yield id += 1;
+    };
+}
+const idNumber = idGenerator(0);
 
 // Start new game
 
